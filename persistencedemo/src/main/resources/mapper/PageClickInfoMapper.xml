@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- @description joblog_RW库 page_click_info 表 Mapper @version Ver 1.0 @author xinxinjs -->
+<mapper namespace="persistencedemo.dto.PageClickInfo">
+
+    <!-- 字段类型描述 -->
+    <resultMap
+        id="RM_PageClickInfo"
+        type="persistencedemo.dto.PageClickInfo">
+        <result
+            property="id"
+            column="id"
+            jdbcType="BIGINT" />
+        <result
+            property="permanentId"
+            column="permanent_id"
+            jdbcType="VARCHAR" />
+        <result
+            property="custId"
+            column="cust_id"
+            jdbcType="INTEGER" />
+        <result
+            property="currentPage"
+            column="current_page"
+            jdbcType="VARCHAR" />
+        <result
+            property="eventId"
+            column="event_id"
+            jdbcType="INTEGER" />
+        <result
+            property="nextPage"
+            column="next_page"
+            jdbcType="VARCHAR" />
+        <result
+            property="productId"
+            column="product_id"
+            jdbcType="BIGINT" />
+        <result
+            property="module"
+            column="module"
+            jdbcType="VARCHAR" />
+        <result
+            property="pit"
+            column="pit"
+            jdbcType="VARCHAR" />
+        <result
+            property="frame"
+            column="frame"
+            jdbcType="VARCHAR" />
+        <result
+            property="actionDate"
+            column="action_date"
+            jdbcType="TIMESTAMP" />
+        <result
+            property="fromPlatform"
+            column="from_platform"
+            jdbcType="INTEGER" />
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+	    <![CDATA[
+		id,permanent_id,cust_id,current_page,event_id,next_page,product_id,module,pit,frame,action_date,from_platform
+	    ]]>
+    </sql>
+
+    <!-- 新增数据 useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+    <insert
+        id="insert"
+        useGeneratedKeys="true"
+        keyProperty="id">
+        INSERT INTO page_click_info
+        <trim
+            prefix="("
+            suffix=")"
+            suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="permanentId != null">
+                permanent_id ,
+            </if>
+            <if test="custId != null">
+                cust_id ,
+            </if>
+            <if test="currentPage != null">
+                current_page ,
+            </if>
+            <if test="eventId != null">
+                event_id ,
+            </if>
+            <if test="nextPage != null">
+                next_page ,
+            </if>
+            <if test="productId != null">
+                product_id ,
+            </if>
+            <if test="module != null">
+                module ,
+            </if>
+            <if test="pit != null">
+                pit ,
+            </if>
+            <if test="frame != null">
+                frame ,
+            </if>
+            <if test="actionDate != null">
+                action_date ,
+            </if>
+            <if test="fromPlatform != null">
+                from_platform ,
+            </if>
+        </trim>
+        <trim
+            prefix="VALUES ("
+            suffix=")"
+            suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT} ,
+            </if>
+            <if test="permanentId != null">
+                #{permanentId,jdbcType=VARCHAR} ,
+            </if>
+            <if test="custId != null">
+                #{custId,jdbcType=INTEGER} ,
+            </if>
+            <if test="currentPage != null">
+                #{currentPage,jdbcType=VARCHAR} ,
+            </if>
+            <if test="eventId != null">
+                #{eventId,jdbcType=INTEGER} ,
+            </if>
+            <if test="nextPage != null">
+                #{nextPage,jdbcType=VARCHAR} ,
+            </if>
+            <if test="productId != null">
+                #{productId,jdbcType=BIGINT} ,
+            </if>
+            <if test="module != null">
+                #{module,jdbcType=VARCHAR} ,
+            </if>
+            <if test="pit != null">
+                #{pit,jdbcType=VARCHAR} ,
+            </if>
+            <if test="frame != null">
+                #{frame,jdbcType=VARCHAR} ,
+            </if>
+            <if test="actionDate != null">
+                #{actionDate,jdbcType=TIMESTAMP} ,
+            </if>
+            <if test="fromPlatform != null">
+                #{fromPlatform,jdbcType=INTEGER} ,
+            </if>
+        </trim>
+        <!-- oracle: order="BEFORE" SELECT sequenceName.nextval AS ID FROM DUAL DB2: order="BEFORE"" values nextval for sequenceName 
+            <selectKey resultType="java.lang.Long" order="BEFORE" keyProperty="userId"> SELECT sequenceName.nextval AS ID FROM DUAL </selectKey> -->
+    </insert>
+
+    <!-- 根据主键更新 -->
+    <update id="update">
+        UPDATE page_click_info
+        <include refid="update_sql" />
+        WHERE
+        id = #{id}
+    </update>
+
+    <!-- 根据主键删除 -->
+    <delete id="delete">
+        DELETE FROM page_click_info
+        WHERE
+        id = #{id}
+    </delete>
+
+    <!-- 根据条件删除 -->
+    <delete id="deleteByCondition">
+        DELETE FROM page_click_info
+        <include refid="findCondition_where" />
+    </delete>
+
+    <!-- 根据主键查询 -->
+    <select
+        id="getById"
+        resultMap="RM_PageClickInfo">
+        SELECT
+        <include refid="columns" />
+        FROM page_click_info
+        WHERE
+        id = #{id}
+    </select>
+
+    <!-- 根据条件查询数目 -->
+    <select
+        id="findCondition_count"
+        resultType="long">
+        SELECT count(1) FROM page_click_info
+        <include refid="findCondition_where" />
+    </select>
+
+    <!-- 分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页 因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现 -->
+    <select
+        id="findCondition"
+        resultMap="RM_PageClickInfo">
+        SELECT
+        <include refid="columns" />
+        FROM page_click_info
+        <include refid="findCondition_where" />
+    </select>
+
+    <!-- 修改列 -->
+    <sql id="update_sql">
+        <set>
+            <if test="permanentId != null">
+                permanent_id = #{permanentId,jdbcType=VARCHAR} ,
+            </if>
+            <if test="custId != null">
+                cust_id = #{custId,jdbcType=INTEGER} ,
+            </if>
+            <if test="currentPage != null">
+                current_page = #{currentPage,jdbcType=VARCHAR} ,
+            </if>
+            <if test="eventId != null">
+                event_id = #{eventId,jdbcType=INTEGER} ,
+            </if>
+            <if test="nextPage != null">
+                next_page = #{nextPage,jdbcType=VARCHAR} ,
+            </if>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=BIGINT} ,
+            </if>
+            <if test="module != null">
+                module = #{module,jdbcType=VARCHAR} ,
+            </if>
+            <if test="pit != null">
+                pit = #{pit,jdbcType=VARCHAR} ,
+            </if>
+            <if test="frame != null">
+                frame = #{frame,jdbcType=VARCHAR} ,
+            </if>
+            <if test="actionDate != null">
+                action_date = #{actionDate,jdbcType=TIMESTAMP} ,
+            </if>
+            <if test="fromPlatform != null">
+                from_platform = #{fromPlatform,jdbcType=INTEGER} ,
+            </if>
+        </set>
+    </sql>
+
+    <!-- 限定条件 -->
+    <sql id="findCondition_where">
+        <!-- ognl访问静态方法的表达式 为@class@method(args),以下为调用rapid中的Ognl.isNotEmpty()方法,还有其它方法如isNotBlank()可以使用，具体请查看Ognl类 -->
+        <where>
+            <if test="id != null">
+                AND id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="permanentId != null">
+                AND permanent_id = #{permanentId,jdbcType=VARCHAR}
+            </if>
+            <if test="custId != null">
+                AND cust_id = #{custId,jdbcType=INTEGER}
+            </if>
+            <if test="currentPage != null">
+                AND current_page = #{currentPage,jdbcType=VARCHAR}
+            </if>
+            <if test="eventId != null">
+                AND event_id = #{eventId,jdbcType=INTEGER}
+            </if>
+            <if test="nextPage != null">
+                AND next_page = #{nextPage,jdbcType=VARCHAR}
+            </if>
+            <if test="productId != null">
+                AND product_id = #{productId,jdbcType=BIGINT}
+            </if>
+            <if test="module != null">
+                AND module = #{module,jdbcType=VARCHAR}
+            </if>
+            <if test="pit != null">
+                AND pit = #{pit,jdbcType=VARCHAR}
+            </if>
+            <if test="frame != null">
+                AND frame = #{frame,jdbcType=VARCHAR}
+            </if>
+            <if test="actionDateBegin != null">
+                AND action_date >= #{actionDateBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="actionDateEnd != null">
+                AND action_date &lt;= #{actionDateEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="fromPlatform != null">
+                AND from_platform = #{fromPlatform,jdbcType=INTEGER}
+            </if>
+        </where>
+    </sql>
+</mapper>
+

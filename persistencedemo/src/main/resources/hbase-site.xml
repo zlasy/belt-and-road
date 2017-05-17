@@ -1,0 +1,34 @@
+<configuration>
+
+	<!-- 분산 클러스터 인경우 =true -->
+	<property>
+		<name>hbase.cluster.distributed</name>
+		<value>false</value>
+		<description>The mode the cluster will be in. Possible values are
+			false: standalone and pseudo-distributed setups with managed
+			Zookeeper
+			true: fully-distributed with unmanaged Zookeeper Quorum (see
+			hbase-env.sh)
+		</description>
+	</property>
+
+	<property>
+		<name>hbase.zookeeper.quorum</name>
+		<value>10.255.209.100,10.255.209.210,10.255.209.211</value>
+	</property>
+	<property>
+		<name>hbase.zookeeper.property.clientPort</name>
+		<value>2181</value>
+	</property>
+	<property>
+		<name>zookeeper.znode.parent</name>
+		<value>/hbase</value>
+	</property>
+
+	<property>
+		<name>hbase.client.retries.number</name>
+		<value>1</value>
+		<description>retry count</description>
+	</property>
+
+</configuration>

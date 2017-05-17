@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+
+	<!-- 设置日志输出根目录 -->
+	<property name="log.dir" value="logs" />
+	<property name="log.charset" value="UTF-8" />
+	<property name="log.maxHistory" value="180" />
+	<property name="log.maxFileSize" value="256MB" />
+	<!-- 控制台输出包含的日志级别 -->
+	<property name="log.std.log.level" value="DEBUG" />
+	<!-- INFO包含的日志级别 -->
+	<property name="log.info.log.level" value="DEBUG" />
+	<!-- ERROR包含的日志级别 -->
+	<property name="log.error.log.level" value="WARN" />
+
+	<property name="log.pattern"
+		value="[%-5level][%d{yyyy/MM/dd HH:mm:ss.SSS}][%thread] %logger{10} - %msg%n" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+			<charset>${log.charset}</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>${log.std.log.level}</level>
+		</filter>
+	</appender>
+
+	<appender name="INFO_OUT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<prudent>false</prudent>
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+			<charset>${log.charset}</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.dir}/info.%d{yyyy-MM-dd}.%i.log.gz
+			</fileNamePattern>
+			<maxHistory>${log.maxHistory}</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${log.maxFileSize}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>${log.info.log.level}</level>
+		</filter>
+	</appender>
+
+	<appender name="ERROR_OUT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<prudent>false</prudent>
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+			<charset>${log.charset}</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.dir}/error.%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
+			<maxHistory>${log.maxHistory}</maxHistory>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>${log.error.log.level}</level>
+		</filter>
+	</appender>
+
+	<!-- 数据源与事务管理日志 -->
+	<logger name="org.springframework.jdbc" level="DEBUG"
+		additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger name="org.mybatis.spring" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="persistencedemo" level="DEBUG" additivity="false">
+		<appender-ref ref="INFO_OUT" />
+		<appender-ref ref="ERROR_OUT" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="INFO_OUT" />
+		<appender-ref ref="ERROR_OUT" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
