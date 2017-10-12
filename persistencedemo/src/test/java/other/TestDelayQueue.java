@@ -38,7 +38,7 @@ class Student implements Runnable, Delayed {
 
     @Override
     public long getDelay(TimeUnit unit) {
-        return unit.convert(submitTime - System.nanoTime(), unit.NANOSECONDS);
+        return unit.convert(submitTime - System.nanoTime(), TimeUnit.NANOSECONDS);
     }
 
     @Override

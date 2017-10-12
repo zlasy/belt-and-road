@@ -14,7 +14,6 @@ import persistencedemo.dto.PersistenceTypeEnum;
 
 public class PersistenceMain {
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws IOException, HBaseException {
 
 		@SuppressWarnings("resource")
@@ -24,7 +23,6 @@ public class PersistenceMain {
 		BaseDao<PageClickInfo> dao = app.getDao(PersistenceTypeEnum.JDBC);
 		dao.findByConfition(new PageClickInfo());
 		
-//		HbaseDemo.start();
 	}
 
 }

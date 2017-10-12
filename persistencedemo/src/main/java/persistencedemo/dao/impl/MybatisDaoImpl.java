@@ -10,9 +10,8 @@ import persistencedemo.dto.PageClickInfo;
 @Repository
 public class MybatisDaoImpl implements BaseDao<PageClickInfo> {
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List findByConfition(PageClickInfo param) {
+	public List<PageClickInfo> findByConfition(PageClickInfo param) {
 		// TODO Auto-generated method stub
 		return null;
 	}

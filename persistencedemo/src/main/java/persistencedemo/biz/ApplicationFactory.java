@@ -21,7 +21,7 @@ public class ApplicationFactory {
 	@Resource
 	HbaseDaoImpl hbaseDao;
 
-	public BaseDao getDao(PersistenceTypeEnum type) {
+	public BaseDao<PageClickInfo> getDao(PersistenceTypeEnum type) {
 		switch (type) {
 			case JDBC:
 				return jdbcDao;
