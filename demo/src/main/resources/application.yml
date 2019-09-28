@@ -1,0 +1,25 @@
+dubbo:
+#  registry:
+#    address: zookeeper://10.255.242.215:2181
+#    group: /dubbo/outapi
+#    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+#  config-center:
+#    address: http://10.255.242.227:8080
+#    namespaces: application
+#    highest-priority: false
+  consumer:
+    check: false
+    registries:
+      - id: r1
+        address: ${zk.url}
+        group: ${r1.group}
+      - id: r2
+        address: ${zk.url}
+        group: ${r2.group}
+    retries: 0
+  provider:
+    protocols:
+      - id: p1
+        protocol: rest
+      - id: p2
+        protocol: dubbo
