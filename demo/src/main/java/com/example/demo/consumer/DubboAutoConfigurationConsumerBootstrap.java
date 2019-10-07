@@ -1,7 +1,6 @@
-package com.example.demo.service;
+package com.example.demo.consumer;
 
 import com.dangdang.ddcloud.httpclient.DdcloudHttpClient;
-import com.dangdang.ddcloud.httpclient.DdcloudHttpGetRequest;
 import com.dangdang.ddcloud.httpclient.DdcloudResponse;
 import com.dangdang.kefu.msg.center.facade.MessageService;
 import com.dangdang.kefu.msg.center.facade.param.message.MaxSeqParams;
@@ -10,9 +9,7 @@ import com.dangdang.kefu.outer.api.facade.response.ApiResponse;
 import com.dangdang.kefu.outer.api.facade.response.CustInfoRespData;
 import com.example.demo.config.DynamicProperties;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.ConsumerConfig;
 import org.apache.dubbo.config.annotation.Reference;
-import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.Map;
 
