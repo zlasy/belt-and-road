@@ -2,7 +2,7 @@ dubbo:
   registry:
     address: ${zk.url}
     group: /dubbo/test
-    file: ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+    file: ${user.home}/.dubbo/${spring.application.name}/dubbo.cache
     simplified: true
   #  config-center:
 #    address: http://10.255.242.227:8080
@@ -20,9 +20,10 @@ dubbo:
     retries: 0
   provider:
     protocols:
-      - id: p1
-        name: rest
+      - name: rest
         port: 9111
-      - id: p2
-        name: dubbo
+        threads: 100
+#        server: tomcat
+      - name: dubbo
         port: 9112
+    retries: 0

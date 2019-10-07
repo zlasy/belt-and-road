@@ -1,7 +1,5 @@
 package com.example.demo.consumer;
 
-import com.dangdang.ddcloud.httpclient.DdcloudHttpClient;
-import com.dangdang.ddcloud.httpclient.DdcloudResponse;
 import com.dangdang.kefu.msg.center.facade.MessageService;
 import com.dangdang.kefu.msg.center.facade.param.message.MaxSeqParams;
 import com.dangdang.kefu.outer.api.facade.CustService;
@@ -16,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +28,6 @@ public class DubboAutoConfigurationConsumerBootstrap {
     private MessageService messageService;
     @Autowired
     private DynamicProperties dynamicProperties;
-    @Autowired
-    private DdcloudHttpClient client;
 
     @RequestMapping(path="/cust/{id}", method = RequestMethod.GET)
     public ApiResponse<CustInfoRespData> getCustInfo(@PathVariable Integer id) {
@@ -59,21 +53,5 @@ public class DubboAutoConfigurationConsumerBootstrap {
             e.printStackTrace();
         }
         return result;
-    }
-
-    @RequestMapping("/http")
-    public String http() {
-        try {
-            DdcloudResponse response = client.get("http://10.255.209.70:9100/login.html")
-                    .connectTimeout(2000)//可以不设置，默认值为2000ms
-                    .socketTimeout(5000)//可以不设置，默认值为2000ms
-                    .addHeader("test_header", "get_header")
-                    .retry(2)//仅针对socketTimeout异常会进行重试，如果不需要重试，则不设置该配置
-                    .execute();
-            return response.asString();
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
-        }
-        return "error";
     }
 }
