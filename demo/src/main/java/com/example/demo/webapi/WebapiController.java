@@ -11,13 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.QueryParam;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-@ApiController
-//@RestController
+//@ApiController
+@RestController
 @Slf4j
 public class WebapiController {
 
