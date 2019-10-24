@@ -9,6 +9,7 @@
     <modules>
         <module>persistencedemo</module>
         <module>cacheDemo</module>
+        <module>designPattern</module>
     </modules>
 
     <properties>

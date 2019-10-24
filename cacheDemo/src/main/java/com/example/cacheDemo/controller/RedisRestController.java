@@ -36,13 +36,13 @@ public class RedisRestController {
         k = 0;
         ExecutorService executorService = Executors.newFixedThreadPool(100);
         for(int i = 0; i< 100; i++){
-            executorService.submit(() -> inc(k));
+            executorService.submit(this::inc);
         }
-        Thread.sleep(1000L);
+        Thread.sleep(2000L);
         return k;
     }
 
-    private Integer inc(Integer j) throws InterruptedException {
+    private Integer inc() throws InterruptedException {
         try {
             Thread.sleep(new Random().nextLong() % 100 + 100);
             RLock lock = redisson.getLock("lock:test");

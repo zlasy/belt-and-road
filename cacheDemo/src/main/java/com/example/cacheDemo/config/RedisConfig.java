@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableRedissonHttpSession(keyPrefix="prefix")
+@EnableRedissonHttpSession(keyPrefix = "prefix")
 @EnableCaching
 public class RedisConfig {
 
