@@ -18,7 +18,7 @@ public class MainTest {
 
     }
 
-    @Test
+//    @Test
     public void testExchanger(){
         Exchanger<String> exchanger = new Exchanger<>();
         Thread threadA = new Thread(new ThreadA(exchanger));

@@ -23,7 +23,7 @@ public class MainApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        runDymicProxy();
+        runDynamicProxy();
     }
 
     private void runObserver() {
@@ -35,7 +35,7 @@ public class MainApplication implements ApplicationRunner {
         application.started();
     }
 
-    private void runDymicProxy(){
+    private void runDynamicProxy(){
         Person realStu = new Student();
 
         InvocationHandler handler = new DynamicProxy(realStu);
