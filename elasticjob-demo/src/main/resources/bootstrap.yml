@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: im-shop-api
+    cluster: default
+  profiles:
+    active: FAT
+ddcloud:
+  configcenter:
+    namespaces: application
+    meta: http://10.255.242.227:8080

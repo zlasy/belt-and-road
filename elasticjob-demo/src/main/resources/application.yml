@@ -1,0 +1,17 @@
+dubbo:
+  consumer:
+    check: false
+    registries:
+      - id: r1
+        address: ${zk.url}
+        group: ${r1.group}
+      - id: r2
+        address: ${zk.url}
+        group: ${r2.group}
+    retries: 0
+regCenter:
+  serverList: localhost:2181
+  namespace: myTest
+local:
+  server:
+    port: 8182
