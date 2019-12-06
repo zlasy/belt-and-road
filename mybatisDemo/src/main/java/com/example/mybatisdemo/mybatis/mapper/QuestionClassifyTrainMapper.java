@@ -2,6 +2,8 @@ package com.example.mybatisdemo.mybatis.mapper;
 
 import com.example.mybatisdemo.mybatis.model.QuestionClassifyTrain;
 
+import java.util.List;
+
 public interface QuestionClassifyTrainMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface QuestionClassifyTrainMapper {
     int updateByPrimaryKeySelective(QuestionClassifyTrain record);
 
     int updateByPrimaryKey(QuestionClassifyTrain record);
+
+    List<QuestionClassifyTrain> selectByCriteria(QuestionClassifyTrain record);
 }

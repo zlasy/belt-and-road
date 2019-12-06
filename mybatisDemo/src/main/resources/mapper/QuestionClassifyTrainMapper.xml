@@ -28,6 +28,16 @@
     from question_classify_train
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectByCriteria" parameterType="com.example.mybatisdemo.mybatis.model.QuestionClassifyTrain" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from question_classify_train
+    <where>
+      <if test="id != null"> and id = #{id}</if>
+      <if test="qcId != null"> and qc_id = #{qcId}</if>
+      <if test="roomId != null"> and room_id = #{roomId}</if>
+      <if test="sessionId != null"> and session_id = #{sessionId}</if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from question_classify_train
     where id = #{id,jdbcType=BIGINT}
