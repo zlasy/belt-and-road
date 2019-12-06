@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisdemo.mybatis.mapper.QuestionClassifyTrainMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatisdemo.mybatis.model.QuestionClassifyTrain">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="qc_id" jdbcType="BIGINT" property="qcId" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="factors" jdbcType="VARCHAR" property="factors" />
+    <result column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="session_id" jdbcType="BIGINT" property="sessionId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="creation_user" jdbcType="VARCHAR" property="creationUser" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_changed_user" jdbcType="VARCHAR" property="lastChangedUser" />
+    <result column="last_changed_date" jdbcType="TIMESTAMP" property="lastChangedDate" />
+    <result column="similarity" jdbcType="DECIMAL" property="similarity" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, company_id, qc_id, keywords, factors, room_id, session_id, content, status, 
+    creation_user, creation_date, last_changed_user, last_changed_date, similarity
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from question_classify_train
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from question_classify_train
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.mybatisdemo.mybatis.model.QuestionClassifyTrain">
+    insert into question_classify_train (id, name, company_id, 
+      qc_id, keywords, factors, 
+      room_id, session_id, content, 
+      status, creation_user, creation_date, 
+      last_changed_user, last_changed_date, similarity
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{qcId,jdbcType=BIGINT}, #{keywords,jdbcType=VARCHAR}, #{factors,jdbcType=VARCHAR}, 
+      #{roomId,jdbcType=BIGINT}, #{sessionId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{creationUser,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{lastChangedUser,jdbcType=VARCHAR}, #{lastChangedDate,jdbcType=TIMESTAMP}, #{similarity,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mybatisdemo.mybatis.model.QuestionClassifyTrain">
+    insert into question_classify_train
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="qcId != null">
+        qc_id,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="factors != null">
+        factors,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="sessionId != null">
+        session_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="creationUser != null">
+        creation_user,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastChangedUser != null">
+        last_changed_user,
+      </if>
+      <if test="lastChangedDate != null">
+        last_changed_date,
+      </if>
+      <if test="similarity != null">
+        similarity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="qcId != null">
+        #{qcId,jdbcType=BIGINT},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="factors != null">
+        #{factors,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="sessionId != null">
+        #{sessionId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creationUser != null">
+        #{creationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastChangedUser != null">
+        #{lastChangedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChangedDate != null">
+        #{lastChangedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="similarity != null">
+        #{similarity,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatisdemo.mybatis.model.QuestionClassifyTrain">
+    update question_classify_train
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="qcId != null">
+        qc_id = #{qcId,jdbcType=BIGINT},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="factors != null">
+        factors = #{factors,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="sessionId != null">
+        session_id = #{sessionId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creationUser != null">
+        creation_user = #{creationUser,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastChangedUser != null">
+        last_changed_user = #{lastChangedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChangedDate != null">
+        last_changed_date = #{lastChangedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="similarity != null">
+        similarity = #{similarity,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatisdemo.mybatis.model.QuestionClassifyTrain">
+    update question_classify_train
+    set name = #{name,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      qc_id = #{qcId,jdbcType=BIGINT},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      factors = #{factors,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=BIGINT},
+      session_id = #{sessionId,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      creation_user = #{creationUser,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_changed_user = #{lastChangedUser,jdbcType=VARCHAR},
+      last_changed_date = #{lastChangedDate,jdbcType=TIMESTAMP},
+      similarity = #{similarity,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

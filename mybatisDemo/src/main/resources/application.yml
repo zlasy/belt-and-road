@@ -1,0 +1,22 @@
+dubbo:
+  consumer:
+    check: false
+    registries:
+      - id: r1
+        address: ${zk.url}
+        group: ${r1.group}
+      - id: r2
+        address: ${zk.url}
+        group: ${r2.group}
+    retries: 0
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://10.255.242.136:3306/kefu_ai?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: kefu_ai_user
+    password: kefu_ai_dev
+mybatis:
+  # 重要配置
+  type-aliases-package: com.example.mybatisdemo.mybatis.model
+  mapper-locations: classpath:mapper/*.xml

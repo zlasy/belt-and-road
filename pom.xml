@@ -18,6 +18,8 @@
         <module>cacheDemo</module>
         <module>designPattern</module>
         <module>base</module>
+        <module>elasticjob-demo</module>
+        <module>mybatisDemo</module>
     </modules>
 
     <dependencyManagement>
